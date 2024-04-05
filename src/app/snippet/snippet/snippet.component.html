@@ -1,0 +1,7 @@
+<div class="snippet" [class.even]="snippet.id % 2 === 0">
+    <app-snippet-title [title]="snippet.title"></app-snippet-title>
+    <app-snippet-description [description]="snippet.description"></app-snippet-description>
+    <app-snippet-code [code]="snippet.code"></app-snippet-code>
+    <app-snippet-inputs [inputs]="snippet.inputs"></app-snippet-inputs>
+    <app-snippet-output [output]="snippet.output"></app-snippet-output>    
+</div>
