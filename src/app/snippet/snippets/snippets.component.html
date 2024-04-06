@@ -1,3 +1,5 @@
-@for (snippet of snippets$ | async; track $index) {
-    <app-snippet [snippet]="snippet"></app-snippet>
-}
+<div class="snippets">
+    @for (snippet of snippets$ | async; track $index) {
+        <app-snippet [snippet]="snippet"></app-snippet>
+    }
+</div>

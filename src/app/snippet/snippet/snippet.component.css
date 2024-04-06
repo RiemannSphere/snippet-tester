@@ -1,11 +1,7 @@
 .snippet {
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--primary); /* Primary border */
   border-radius: 0.5rem;
   padding: 1rem;
   margin-bottom: 1rem;
-  background-color: #ffffff
-}
-
-.even {
-  background-color: #f7f7f7;
+  background-color: var(--secondary); /* Secondary background */
 }

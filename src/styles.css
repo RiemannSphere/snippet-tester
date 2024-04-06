@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    /* Primary colors */
+    --primary: #6574cd; /* Purple */
+    --primary-dark: #3a4d8e; /* Darker shade of purple */
+    --primary-light: #d8dee9; /* Light Purple */
+  
+    /* Secondary colors */
+    --secondary: #4a5568; /* Turquoise */
+    --secondary-dark: #2d3748; /* Dark Turquoise */
+    --secondary-light: #a0aec0; /* Light Turquoise */
+  
+    /* Other colors */
+    --background: #1a202c; /* Dark background color */
+    --white: #ffffff;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background-color: var(--background); /* Dark background color */
+    font-family: 'Roboto', sans-serif;
+}

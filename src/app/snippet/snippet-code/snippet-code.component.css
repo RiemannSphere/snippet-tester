@@ -1,11 +1,11 @@
 .code {
-    white-space: pre;
-    background-color: #f0f0f0;
-    padding: 1rem;
+    box-sizing: border-box;
+    width: 100%; 
+    resize: none;
+    padding: 8px;
+    font-family: 'Courier New', monospace; 
+    background-color: var(--secondary-dark);
+    color: var(--primary-light);
+    border: 1px solid var(--primary);
     border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-pre {
-    margin: 0;
 }

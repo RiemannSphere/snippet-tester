@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { SnippetComponent } from '../snippet/snippet.component';
 import { SnippetService } from '../snippet.service';
 import { CommonModule } from '@angular/common';
@@ -10,8 +10,12 @@ import { CommonModule } from '@angular/common';
   templateUrl: './snippets.component.html',
   styleUrl: './snippets.component.css',
 })
-export class SnippetsComponent {
+export class SnippetsComponent implements OnInit {
   snippetService = inject(SnippetService);
+
+  ngOnInit(): void {
+    this.snippetService.initState();
+  }
 
   get snippets$() {
     return this.snippetService.snippets$;

@@ -1,1 +1,8 @@
-<div class="code">{{code}}</div>
+<textarea 
+    class="code" 
+    [value]="code" 
+    (input)="onInputChange($event)" 
+    rows="8"
+    (keydown)="onKeyDown($event)"
+    data-gramm="false"
+></textarea>
