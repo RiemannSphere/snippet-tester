@@ -31,7 +31,7 @@ export const snippets: Snippet[] = [
         title: 'Adder',
         description: 'Adds two numbers',
         code: dedent`
-        export function add(a, b) {
+        export function add(a: number, b: string) {
             return a + b;
         }
         `,

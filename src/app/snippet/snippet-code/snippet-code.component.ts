@@ -2,6 +2,7 @@ import { Component, Input, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SnippetService } from '../snippet.service';
 import { SPACES_IN_TAB } from '../const';
+import { SnippetCompilerService } from '../snippet-compiler.service';
 
 @Component({
   selector: 'app-snippet-code',
@@ -15,10 +16,13 @@ export class SnippetCodeComponent {
   @Input({required: true}) code!: string;
 
   snippetService = inject(SnippetService);
+  snippetCompilerService = inject(SnippetCompilerService);
 
   onInputChange(event: Event): void {
     const newCode = (event.target as HTMLInputElement).value;
     this.snippetService.updateState(this.snippetId, {code: newCode});
+
+    this.snippetCompilerService.getFunctions(newCode);
   }
 
   onKeyDown(event: KeyboardEvent): void {

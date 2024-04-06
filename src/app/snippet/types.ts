@@ -7,3 +7,13 @@ export type Snippet = {
     output: unknown | null;
 }
 
+export type SnippetFunction = {
+    name: string;
+    parameters: SnippetFunctionParameter[];
+}
+
+export type SnippetFunctionParameter = {
+    name: string;
+    type: string;
+}
+
