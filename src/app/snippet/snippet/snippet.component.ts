@@ -2,9 +2,11 @@ import { Component, Input } from '@angular/core';
 import { SnippetTitleComponent } from '../snippet-title/snippet-title.component';
 import { SnippetDescriptionComponent } from '../snippet-description/snippet-description.component';
 import { SnippetCodeComponent } from '../snippet-code/snippet-code.component';
-import { SnippetInputsComponent } from '../snippet-inputs/snippet-inputs.component';
 import { SnippetOutputComponent } from '../snippet-output/snippet-output.component';
 import { Snippet } from '../types';
+import { SnippetParameterValuesComponent } from '../snippet-parameter-values/snippet-parameter-values.component';
+import { SnippetExecutionComponent } from '../snippet-execution/snippet-execution.component';
+import { SnippetFunctionComponent } from '../snippet-function/snippet-function.component';
 
 @Component({
   selector: 'app-snippet',
@@ -13,8 +15,10 @@ import { Snippet } from '../types';
     SnippetTitleComponent, 
     SnippetDescriptionComponent, 
     SnippetCodeComponent, 
-    SnippetInputsComponent, 
-    SnippetOutputComponent
+    SnippetOutputComponent,
+    SnippetFunctionComponent,
+    SnippetParameterValuesComponent,
+    SnippetExecutionComponent
   ],
   templateUrl: './snippet.component.html',
   styleUrl: './snippet.component.css'

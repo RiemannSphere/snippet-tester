@@ -1,22 +1,22 @@
 import * as ts from 'typescript';
-import { SHA256 } from 'crypto-js';
 import { Injectable } from '@angular/core';
-import { SnippetFunction, SnippetFunctionParameter } from './types';
+import { SnippetFunction, SnippetFunctionParameter, SnippetFunctionParameterValues, SnippetFunctionValues } from './types';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SnippetCompilerService {
 
-  getFunctions(code: string): SnippetFunction[] {
+  getFunctions(code: string): {
+    functions: SnippetFunction[],
+    functionValues: SnippetFunctionValues
+  } {
     const source = this.parse(code);
 
     const functions: SnippetFunction[] = [];
 
     ts.forEachChild(source, node => {
-      if (ts.isFunctionDeclaration(node) && node.name && node.name.text) {
-        console.log('node: ', node); 
-        
+      if (ts.isFunctionDeclaration(node) && node.name && node.name.text) {        
         const funcName = node.name.text;
         const funcParameters: SnippetFunctionParameter[] = [];
         
@@ -26,6 +26,7 @@ export class SnippetCompilerService {
             const paramType = param.type?.getText(source);
             
             funcParameters.push({
+              id: this.hashCodeNumber(`${funcName}.${paramName}`),
               name: paramName,
               type: paramType && paramType.length > 0 ? paramType : 'unknown'
             });
@@ -33,15 +34,32 @@ export class SnippetCompilerService {
         }
 
         functions.push({
+          id: this.hashCodeNumber(funcName),
           name: funcName,
           parameters: funcParameters
-        })
+        });
       }
     });
 
-    console.log('functions: ', functions.map(fn => `${fn.name}(${ fn.parameters.map(param => `${param.name}: ${param.type}`).join(', ') })`));
+    return {
+      functions,
+      // TODO: keep param values alive as long as the param exists
+      functionValues: this.generateEmptyFunctionValues(functions)
+    };
+  }
 
-    return functions;
+  private generateEmptyFunctionValues(functions: SnippetFunction[]): SnippetFunctionValues {
+    return functions.reduce((acc, func) => {
+      return {
+        ...acc,
+        [func.id]: func.parameters.reduce((acc, param) => {
+          return {
+            ...acc,
+            [param.id]: ''
+          }
+        }, {})
+      }
+    }, {});
   }
 
   private parse(code: string): ts.SourceFile {
@@ -55,10 +73,14 @@ export class SnippetCompilerService {
   }
 
   private hashCode(str: string): string {
+    return this.hashCodeNumber(str).toString(36);
+  }
+
+  private hashCodeNumber(str: string): number {
     let hash = 0;
 
     if (str.length === 0) {
-      return '';
+      return 0;
     }
 
     for (let i = 0; i < str.length; i++) {
@@ -67,6 +89,6 @@ export class SnippetCompilerService {
       hash = hash & hash;
     }
 
-    return Math.abs(hash).toString(36);
+    return Math.abs(hash);
   }
 }

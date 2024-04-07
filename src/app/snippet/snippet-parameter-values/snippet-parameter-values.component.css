@@ -1,9 +1,9 @@
-.inputs {
+.parameter-values {
     display: grid;
     gap: 0.5rem;
 }
 
-.input {
+.parameter-value {
     box-sizing: border-box;
     width: 100%;
     padding: 8px;

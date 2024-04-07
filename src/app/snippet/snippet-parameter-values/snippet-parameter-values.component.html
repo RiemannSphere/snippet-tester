@@ -1,0 +1,13 @@
+<div class="parameter-values">
+    @for(param of params; track $index) {
+    <div>{{ param.name }}</div>
+    <!-- TODO: change the input type based on param type -->
+    <input 
+        class="parameter-value" 
+        type="text" 
+        [value]="param.value"
+        (input)="onInput($event, param)" 
+        data-gramm="false"
+    >
+    }
+</div>
