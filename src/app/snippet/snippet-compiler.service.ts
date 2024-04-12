@@ -1,6 +1,6 @@
 import * as ts from 'typescript';
 import { Injectable } from '@angular/core';
-import { SnippetFunction, SnippetFunctionParameter, SnippetFunctionParameterValues, SnippetFunctionValues } from './types';
+import { Snippet, SnippetFunction, SnippetFunctionParameter, SnippetFunctionParameterValues, SnippetFunctionValues } from './types';
 
 @Injectable({
   providedIn: 'root'
@@ -90,5 +90,15 @@ export class SnippetCompilerService {
     }
 
     return Math.abs(hash);
+  }
+
+  executeFunction(snippet: Snippet, functionId: number): string {
+    // compile TS code to JS
+    const result = ts.transpileModule(snippet.code, { compilerOptions: { module: ts.ModuleKind.CommonJS } });
+    const jsCode = result.outputText;
+
+    // execute JS code
+    const resultFn = new Function(`return ${jsCode}`)();
+    return resultFn(...Object.values(snippet.functionValues[functionId]));
   }
 }

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { SnippetFunctionExecutions } from '../types';
 
 @Component({
   selector: 'app-snippet-execution',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './snippet-execution.component.css'
 })
 export class SnippetExecutionComponent {
-
+  @Input({required: true}) execution!: string;
 }

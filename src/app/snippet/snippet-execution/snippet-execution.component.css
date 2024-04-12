@@ -1,0 +1,12 @@
+.execution {
+    white-space: pre-wrap;
+    font-family: monospace;
+    color: var(--primary);
+    background-color: var(--secondary-dark);
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    min-height: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--primary);
+    margin-top: 1rem;
+}

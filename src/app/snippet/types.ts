@@ -6,8 +6,6 @@ export type Snippet = {
     title: string;
     description: string;
     code: string;
-    output: string | null; // to be removed
-
     functions: SnippetFunction[];
     functionValues: SnippetFunctionValues;
     executions: SnippetFunctionExecutions;

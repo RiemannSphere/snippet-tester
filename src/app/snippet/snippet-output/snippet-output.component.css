@@ -1,7 +1,0 @@
-.output {
-    font-family: 'Courier New', monospace; /* Specify monospace font family */
-    color: var(--primary); /* Use primary color for output text */
-    background-color: var(--secondary-dark); /* Use secondary color for output background */
-    padding: 0.5rem; /* Adjust padding as needed */
-    border-radius: 0.25rem; /* Adjust border radius as needed */
-}

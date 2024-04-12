@@ -11,7 +11,6 @@ export const snippets: Snippet[] = [
                 return a + b;
             }
         `,
-        output: null,
         functions: [],
         functionValues: {},
         executions: {}

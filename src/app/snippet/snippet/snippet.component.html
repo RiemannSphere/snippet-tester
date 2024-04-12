@@ -1,13 +1,20 @@
 <div class="snippet">
     <app-snippet-title [title]="snippet.title"></app-snippet-title>
+    
     <app-snippet-description [description]="snippet.description"></app-snippet-description>
+    
     <app-snippet-code [snippetId]="snippet.id" [code]="snippet.code"></app-snippet-code>
-    <app-snippet-output [output]="snippet.output"></app-snippet-output>
 
     @for (function of snippet.functions; track $index) {
-    <app-snippet-function [function]="function"></app-snippet-function>
-    <app-snippet-parameter-values [snippetId]="snippet.id" [functionId]="function.id" [parameters]="function.parameters"
-        [parameterValues]="snippet.functionValues[function.id]"></app-snippet-parameter-values>
-    <!-- <app-snippet-execution [execution]="execution"></app-snippet-execution> -->
+        <app-snippet-function [snippet]="snippet" [function]="function"></app-snippet-function>
+        
+        <app-snippet-parameter-values 
+            [snippetId]="snippet.id" 
+            [functionId]="function.id" 
+            [parameters]="function.parameters"
+            [parameterValues]="snippet.functionValues[function.id]"
+        ></app-snippet-parameter-values>
+        
+        <app-snippet-execution [execution]="snippet.executions[function.id]"></app-snippet-execution>
     }
 </div>
